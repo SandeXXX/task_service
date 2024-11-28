@@ -28,6 +28,15 @@ type Database struct {
 	Pass     string `json:"pass" env:"POSTGRES_PASSWORD"`
 }
 
+func NewConfig() (*Config, error) {
+	var config Config
+	if err := config.readConfig(); err != nil {
+		return nil, err
+	}
+
+	return &config, nil
+}
+
 func (config *Config) readConfig() error {
 	configPath := os.Getenv("CONFIG_PATH")
 	if strings.TrimSpace(configPath) == "" {

@@ -7,15 +7,15 @@ import (
 	_ "github.com/lib/pq"
 	"github.com/pkg/errors"
 
-	"app/internal/config"
+	"github.com/SandeXXX/task_service/internal/config"
 )
 
 type Store struct {
 	DB *sqlx.DB
 }
 
-func New(cfg config.Datebase) (*Store, error) {
-	dsn := fmt.Sprint(
+func New(cfg config.Database) (*Store, error) {
+	dsn := fmt.Sprintf(
 		"host=%s port=%d user=%s password=%s dbname=%s sslmode=disable",
 		cfg.Host, cfg.Port, cfg.User, cfg.Pass, cfg.Database,
 	)
